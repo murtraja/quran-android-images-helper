@@ -1,0 +1,5 @@
+import os
+
+SERVER_PATH = os.path.dirname(os.path.realpath(__file__))
+STATIC_PATH = os.path.join(SERVER_PATH, 'static')
+IMAGES_1024_PATH = os.path.join(STATIC_PATH, 'images_1024')
