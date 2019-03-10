@@ -14,14 +14,28 @@ def route_root():
     safah = request.GET.get('safah') or 1
     safah = int(safah)
     pagePath = static_helper.get_image_path_from_safah(safah)
-    print(pagePath)
     values = db_helper.get_bounds_for_safah(safah)
-    return template('main.html', values=values, pagePath=pagePath)
+    highlight_data = request.GET.get('highlight') or ''
+    return template('main.html', values=values, pagePath=pagePath, data=[],  highlight=highlight_data)
 
 @route('/test/')
 def route_test():
-    db_helper.test()
-    return "OK"
+    d = db_helper.get_data_for_safah()
+    # print(d)
+    safah = 17
+    pagePath = static_helper.get_image_path_from_safah(safah)
+    # print(pagePath)
+    return template('main.html', values=[], pagePath=pagePath, data=d)
+    # return "OK"
+
+@route('/highlight/')
+def route_test():
+    safah = request.GET.get('safah') or 1
+    safah = int(safah)
+    pagePath = static_helper.get_image_path_from_safah(safah)
+    highlight_data = request.GET.get('highlight') or ''
+    print(highlight_data)
+    return template('main.html', values=[], pagePath=pagePath, data=[], highlight=highlight_data)
 
 if os.environ.get('APP_LOCATION') == 'heroku':
     run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

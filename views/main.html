@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
 <body>
-    <canvas id="myCanvas" width="1024" height="1656"
-    style="border:1px solid #c3c3c3;">
-    Your browser does not support the canvas element.
-</canvas>
-<script>
-    window.gValues = {{values}}
-    window.gPagePath = '{{pagePath}}'
-</script>
-<script src="static/js/main.js">
-    function myCanvas() {
-        var c = document.getElementById("myCanvas");
-        var ctx = c.getContext("2d");
-        var img = document.getElementById("scream");
-        ctx.drawImage(img,10,10);
-    }
-    // window.gValues = {{values}}
-</script>
+    <div style="flex: 1; align-items:flex-start">
+        <canvas id="myCanvas" width="1024" height="1656"
+        style="border:1px solid #c3c3c3; float:inline-start">
+        Your browser does not support the canvas element.
+        </canvas>
+        <textarea style="float:inline-start" id="coords" rows="10" cols="50">{{highlight}}</textarea>
+        <button style="float:inline-start" id="refresh" onclick="onRefreshPress()">Refresh</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script>
+        window.gData = {{!data}}
+        window.gValues = {{values}}
+        window.gPagePath = '{{pagePath}}'
+    </script>
+    <script type="text/javascript" src ="/static/js/helpers.js"></script>
+    <script type="text/javascript" src="/static/js/main.js">
+        function myCanvas() {
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var img = document.getElementById("scream");
+            ctx.drawImage(img,10,10);
+        }
+        // window.gValues = {{values}}
+    </script>
 
 </body>
 </html>
