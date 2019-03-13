@@ -1,5 +1,5 @@
 import sqlite3
-from constants import DATA_SELECTION_QUERY_FIELDS, DATA_SELECTION_QUERY_FIELDS_MAP
+from constants import DATA_SELECTION_QUERY_FIELDS, DATA_SELECTION_QUERY_FIELDS_MAP, DATA_SELECTION_ORDER_FIELDS
 def open_connection():
     conn = sqlite3.connect('static/databases/ayahinfo_1024.db')
     return conn.cursor()
@@ -43,6 +43,19 @@ def keyify(keys, values):
         print("keyify: different length of keys({}) and values({})".format(keys_len, values_len))
     dictionary = dict(zip(keys, values))
     return dictionary
+
+def get_safah_data_from_ayah_key(ayah_key):
+    [sura, ayah] = map(lambda x: int(x), ayah_key.split(":"))
+    subquery = "select page_number from glyphs where sura_number={} and ayah_number={} limit 1".format(sura, ayah)
+    query = "select {} from glyphs where page_number in ({}) order by {}".format(
+        ", ".join(DATA_SELECTION_QUERY_FIELDS), 
+        subquery, 
+        ", ".join(DATA_SELECTION_ORDER_FIELDS))
+    print(query)
+    result = get_results_for_query(query)
+    return list(map(lambda x: keyify(DATA_SELECTION_QUERY_FIELDS_MAP, list(x)), result))
+
+
 
 if __name__ == '__main__':
     test()

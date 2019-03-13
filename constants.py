@@ -27,3 +27,9 @@ DATA_SELECTION_QUERY_FIELDS_MAP = [
     'max_x', 
     'max_y'
 ]
+
+DATA_SELECTION_ORDER_FIELDS = [
+    'sura_number', 
+    'ayah_number', 
+    'position'
+]

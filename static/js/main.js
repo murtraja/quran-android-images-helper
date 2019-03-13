@@ -1,18 +1,23 @@
+const onWindowLoaded = () => {
+  const textArea = document.getElementById("coords");
+  const text = textArea.value;
+  if(window.gData.length > 0) {
+    highlightAyah(text, window.gData)
+    return;
+  }
+  else if(text) {
+    drawRectanglesFromText();
+    return;
+  }
+  values = window.gValues
+  values.forEach((val) => {
+    drawRectangle(...val)
+  })
+}
 
 
 window.onload = function() {
-  initCanvas(() => {
-    const textArea = document.getElementById("coords");
-    const text = textArea.innerHTML;
-    if(text) {
-      drawRectanglesFromText();
-      return;
-    }
-    values = window.gValues
-    values.forEach((val) => {
-      drawRectangle(...val)
-    })
-  })
+  initCanvas(onWindowLoaded)
 }
 
 const initCanvas = (callback) => {

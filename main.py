@@ -30,12 +30,10 @@ def route_test():
 
 @route('/highlight/')
 def route_test():
-    safah = request.GET.get('safah') or 1
-    safah = int(safah)
-    pagePath = static_helper.get_image_path_from_safah(safah)
-    highlight_data = request.GET.get('highlight') or ''
-    print(highlight_data)
-    return template('main.html', values=[], pagePath=pagePath, data=[], highlight=highlight_data)
+    ayah_key = request.GET.get('ayah') or "1:1"
+    safah_data = db_helper.get_safah_data_from_ayah_key(ayah_key)
+    page_path = static_helper.get_image_path_from_safah(safah_data[0]['page'])
+    return template('main.html', values=[], pagePath=page_path, data=safah_data, highlight=ayah_key)
 
 if os.environ.get('APP_LOCATION') == 'heroku':
     run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
