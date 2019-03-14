@@ -114,3 +114,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# project specific
+static/images_1260/
+static/images_1920/
+static/databases/ayahinfo_1260.db
+static/databases/ayahinfo_1920.db
+notes.txt
