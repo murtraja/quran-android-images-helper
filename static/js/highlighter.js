@@ -9,13 +9,13 @@ const highlightAyah = (ayahKey, data) => {
 const normalizePageAyahs = (ayahCoordinates) => {
   let normalizedAyahCoordinates = {}
   Object.entries(ayahCoordinates).forEach(([key, value]) => {
-    normalizedValue = normalizeAyahBounds(value)
+    normalizedValue = normalizeAyahBounds(value, key)
     normalizedAyahCoordinates[key] = normalizedValue
   })
   return normalizedAyahCoordinates
 }
 
-const normalizeAyahBounds = (ayahBounds) => {
+const normalizeAyahBounds = (ayahBounds, key) => {
   const total = ayahBounds.length;
   if(total < 2) {
     return ayahBounds

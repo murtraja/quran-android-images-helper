@@ -33,3 +33,9 @@ DATA_SELECTION_ORDER_FIELDS = [
     'ayah_number', 
     'position'
 ]
+
+PAGE_RESOLUTION = {
+    '1024': [1024, 1656],
+    '1260': [1260, 2038],
+    '1920': [1920, 3106]
+}

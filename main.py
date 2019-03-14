@@ -1,6 +1,6 @@
 from bottle import run, route, static_file, template, request
 import os, db_helper, static_helper
-from constants import SERVER_PATH
+from constants import SERVER_PATH, PAGE_RESOLUTION
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
@@ -12,11 +12,12 @@ def server_static(filepath):
 @route('/')
 def route_root():
     safah = request.GET.get('safah') or 1
+    images = request.GET.get('images') or '1024'
     safah = int(safah)
-    pagePath = static_helper.get_image_path_from_safah(safah)
-    values = db_helper.get_bounds_for_safah(safah)
+    page_path = static_helper.get_image_path_from_safah(safah, images)
+    values = db_helper.get_bounds_for_safah(safah, images)
     highlight_data = request.GET.get('highlight') or ''
-    return template('main.html', values=values, pagePath=pagePath, data=[],  highlight=highlight_data)
+    return template('main.html', values=values, pagePath=page_path, data=[], highlight=highlight_data, resolution=PAGE_RESOLUTION[images])
 
 @route('/test/')
 def route_test():
@@ -31,9 +32,10 @@ def route_test():
 @route('/highlight/')
 def route_test():
     ayah_key = request.GET.get('ayah') or "1:1"
-    safah_data = db_helper.get_safah_data_from_ayah_key(ayah_key)
-    page_path = static_helper.get_image_path_from_safah(safah_data[0]['page'])
-    return template('main.html', values=[], pagePath=page_path, data=safah_data, highlight=ayah_key)
+    images = request.GET.get('images') or '1024'
+    safah_data = db_helper.get_safah_data_from_ayah_key(ayah_key, images)
+    page_path = static_helper.get_image_path_from_safah(safah_data[0]['page'], images)
+    return template('main.html', values=[], pagePath=page_path, data=safah_data, highlight=ayah_key, resolution=PAGE_RESOLUTION[images])
 
 if os.environ.get('APP_LOCATION') == 'heroku':
     run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
