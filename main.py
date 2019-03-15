@@ -1,6 +1,6 @@
 from bottle import run, route, static_file, template, request
 import os, db_helper, static_helper
-from constants import SERVER_PATH, PAGE_RESOLUTION
+from constants import SERVER_PATH, PAGE_RESOLUTION, are_we_live
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
@@ -37,7 +37,7 @@ def route_test():
     page_path = static_helper.get_image_path_from_safah(safah_data[0]['page'], images)
     return template('main.html', values=[], pagePath=page_path, data=safah_data, highlight=ayah_key, resolution=PAGE_RESOLUTION[images])
 
-if os.environ.get('APP_LOCATION') == 'heroku':
+if are_we_live:
     run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 else:
     run(host='0.0.0.0', port=8080, debug=True)
