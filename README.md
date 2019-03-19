@@ -11,3 +11,7 @@ Usage:
 2. [Highlight a particular ayah, say 1:7 for width_1920](https://quran-android-images-helper.herokuapp.com/highlight/?ayah=1:7&images=1920)
 
 ![highlighted ayah](https://raw.githubusercontent.com/murtraja/quran-android-images-helper/master/screenshots/usage_2.jpg)
+
+3. [Border rectangles, given their coordinates](https://quran-android-images-helper.herokuapp.com/?safah=1&highlight=RectF(298.0,%20660.0,%20729.0,%20734.0)%0ARectF(385.0,%20734.0,%20729.0,%20747.0)%0ARectF(385.0,%20747.0,%20639.0,%20811.0)
+
+![highlighted ayah](https://raw.githubusercontent.com/murtraja/quran-android-images-helper/master/screenshots/custom_border.png)
