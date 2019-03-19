@@ -12,6 +12,6 @@ Usage:
 
 ![highlighted ayah](https://raw.githubusercontent.com/murtraja/quran-android-images-helper/master/screenshots/usage_2.jpg)
 
-3. [Border rectangles, given their coordinates](https://quran-android-images-helper.herokuapp.com/?safah=1&highlight=RectF(298.0,%20660.0,%20729.0,%20734.0)%0ARectF(385.0,%20734.0,%20729.0,%20747.0)%0ARectF(385.0,%20747.0,%20639.0,%20811.0)
+3. [Border rectangles, given their coordinates](https://quran-android-images-helper.herokuapp.com/?safah=1&highlight=RectF%28298.0,%20660.0,%20729.0,%20734.0%29%0ARectF%28385.0,%20734.0,%20729.0,%20747.0%29%0ARectF%28385.0,%20747.0,%20639.0,%20811.0%29)
 
-![highlighted ayah](https://raw.githubusercontent.com/murtraja/quran-android-images-helper/master/screenshots/custom_border.png)
+![custom border](https://raw.githubusercontent.com/murtraja/quran-android-images-helper/master/screenshots/custom_border.png)
