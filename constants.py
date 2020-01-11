@@ -36,8 +36,32 @@ DATA_SELECTION_ORDER_FIELDS = [
     'position'
 ]
 
-PAGE_RESOLUTION = {
-    '1024': [1024, 1656],
-    '1260': [1260, 2038],
-    '1920': [1920, 3106]
+QA_PAGE_FILE_NAME_FORMAT = 'page{0:03d}.png';
+MT_PAGE_FILE_NAME_FORMAT = '{}.jpg'
+
+PAGE_CONFIG = {
+    '1024': {
+        'res': [1024, 1656],
+        'format': QA_PAGE_FILE_NAME_FORMAT
+    },
+    '1260': {
+        'res': [1260, 2038],
+        'format': QA_PAGE_FILE_NAME_FORMAT
+    },
+    '1920': {
+        'res': [1920, 3106],
+        'format': QA_PAGE_FILE_NAME_FORMAT
+    },
+    '1053': {
+        'res': [776, 1053],
+        'format': MT_PAGE_FILE_NAME_FORMAT,
+        'res_initial': [827, 1158],
+    }
 }
+
+def get_page_resolution(res_key, safah):
+    if res_key == '1053' and safah < 3:
+        resolution = PAGE_CONFIG['1053']['res_initial']
+    else:
+        resolution = PAGE_CONFIG[res_key]['res']
+    return resolution
