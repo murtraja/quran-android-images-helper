@@ -3,7 +3,7 @@ from constants import are_we_live, PAGE_CONFIG
 
 def get_images_parent_path(resolution="1024"):
     path = ''
-    if are_we_live:
+    if are_we_live and resolution != 1053:
         path = 'http://android.quran.com/data/width_{}'
     else:
         path = '/static/images_{}'
